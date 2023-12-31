@@ -1,8 +1,19 @@
 import React, { useRef, useState } from "react";
 import Header from "../Header/Header";
 import { checkValidateData } from "../../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../../utils/userSlice";
+import { user_avatar } from "../../utils/constants";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -13,11 +24,52 @@ const Login = () => {
   const toggleSignIn = () => setIsSignInForm(!isSignInForm);
 
   const handleSubmit = () => {
-    const isError = checkValidateData(
+    const message = checkValidateData(
       email.current.value,
       password.current.value
     );
-    if (isError) setErrorMessage(isError);
+    setErrorMessage(message);
+    if (message) return;
+    if (isSignInForm) {
+      // Sign In Login
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {})
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+          // ..
+        });
+    } else {
+      // Sign Up Logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL: user_avatar,
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName, photoURL }));
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+        });
+    }
   };
 
   return (
