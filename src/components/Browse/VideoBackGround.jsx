@@ -6,13 +6,12 @@ const VideoBackGround = ({ movieId }) => {
   const trailerId = useSelector((state) => state.movies?.trailerVideo);
   useMovieTrailer(movieId);
 
-  console.log(trailerId);
   return (
     <div className="h-[100%]">
       {trailerId && (
         <iframe
-          className="w-[100%] aspect-video "
-          src={`https://www.youtube.com/embed/${trailerId.key}?&autoplay=1&mute=1&controls=0&rel=0&modestbranding=0`}
+          className="w-[100%] aspect-video -mt-[60px]"
+          src={`https://www.youtube.com/embed/${trailerId.key}?&autoplay=1&mute=1&controls=0&modestbranding=0&autohide=0&html5=1&loop=99`}
           title="YouTube video player"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>

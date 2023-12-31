@@ -4,6 +4,8 @@ export const logo =
 export const user_avatar =
   "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg";
 
+export const base_Image_path = "https://image.tmdb.org/t/p/w500/";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
