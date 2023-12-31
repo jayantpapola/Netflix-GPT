@@ -76,7 +76,7 @@ const Login = () => {
     <div className="text-[#777]">
       <div className="bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/ca6a7616-0acb-4bc5-be25-c4deef0419a7/c5af601a-6657-4531-8f82-22e629a3795e/IN-en-20231211-popsignuptwoweeks-perspective_alpha_website_large.jpg')] bg-cover brightness-[45%] fixed inset-0 -z-10 "></div>
       <Header />
-      <div className="flex items-center justify-center mt-5 ">
+      <div className="flex items-center justify-center mt-28 ">
         <div className="flex flex-col bg-[rgb(0,0,0,0.75)] p-[70px] rounded-md w-[37%] min-w-[300px]">
           <h2 className="text-3xl text-white font-semibold">
             {isSignInForm ? "Sign In" : "Sign Up"}

@@ -5,3 +5,11 @@
 body {
   background: #111;
 }
+body::-webkit-scrollbar {
+  width: 5px;
+  background-color: #111;
+}
+body::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #333;
+}

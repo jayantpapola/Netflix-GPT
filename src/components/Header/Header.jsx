@@ -33,14 +33,13 @@ const Header = () => {
     };
   }, []);
 
-  console.log(user);
   return (
-    <div className="px-8 py-2 flex items-center ">
-      <img src={logo} alt="Netflix-Logo" className="w-52" />
+    <div className="px-8 py-2 flex items-center absolute left-0 right-0 top-0 z-10">
+      <img src={logo} alt="Netflix-Logo" className="h-[80px]" />
       {user && (
         <div className="flex ml-auto gap-2 items-center">
           <p className="text-white font-bold ">{user.displayName}</p>
-          <img src={user.photoURL} alt="user-icon" className="h-[52px]" />
+          <img src={user.photoURL} alt="user-icon" className="h-[50px]" />
           <button
             className="bg-blue-500 px-5 py-2 text-white font-bold"
             onClick={handleSignOut}
